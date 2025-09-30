@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import Room from './Room';
+import SinglePlayer from './SinglePlayer';
 
-function App() {
+export default function App(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="app">
+        <div className="header">
+          <div style={{display:'flex', gap:12, alignItems:'center'}}>
+            <div className="logo">RPS</div>
+            <div>
+              <div style={{fontWeight:700}}>Rock · Paper · Scissors</div>
+              <div className="small">Shareable link · Best of 3 · Save result</div>
+            </div>
+          </div>
+          <div className="small">No accounts</div>
+        </div>
+
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/room/:code" element={<Room />} />
+          <Route path="/room/quick" element={<Room />} />
+          <Route path="/single" element={<SinglePlayer />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
-
-export default App;
